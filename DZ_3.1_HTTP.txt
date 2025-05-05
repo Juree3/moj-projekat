@@ -1,0 +1,155 @@
+Zadaci za vježbu:
+
+2.1. Pristup resursima
+
+Pristupite resursu s vašeg računala putem preglednika (po vašem izboru):
+
+http://info.cern.ch/hypertext/WWW/TheProject.html
+
+te odgovorite na pitanja (svaki odgovor pokrijepiti analizom ili dijelom HTTP poruke koji se odnosi ili nam daje taj odgovor):
+
+
+- Pokreće li vaš preglednik HTTP verziju 1.0 ili 1.1? 
+
+U Chrome Devtoolsu, točnije sekciji network, možemo pregledati HTTP zahtjev koji smo uputili. U opciji Raw request headers možemo pregledati izvorna zaglavlja zahtjeva.
+
+Tu pronalazimo:
+
+GET /hypertext/WWW/TheProject.html HTTP/1.1
+...
+
+što nam govori da koristimo HTTP/1.1 protokol.
+
+
+
+- Koja je verzija HTTP-a poslužitelja pokrenuta kad pristupite npr sa sum.ba?
+
+Kada pristupimo na sum.ba, response header nam govori da se radi o HTTP/1.1 protokolu.
+
+
+- Koje jezike (ako postoje) vaš preglednik pokazuje da može prihvatiti na poslužitelju?
+
+Jezike koje preglednik može prihvatiti na poslužitelju pronalazimo u zaglavlju HTTP zahtjeva accept-language:
+
+accept-language:
+en-US,en;q=0.7
+
+gdje en-US označava primarni jezik(američki engleski) koji moj preglednik preferira te en(engleski) koji je sekundarni jezik. q=0.7 je faktor koji označava prioritetni nivo/preferenciju jezika.
+
+
+- Koja je IP adresa vašeg računala? A koja je IP adresa sum.ba?
+
+Najlakši način da provjerimo vlastitu IP adresu je pomoću curl zahtjeva na neki online alat za to namjenjen:
+
+
+bash
+
+$curl ifconfig.me
+95.156.166.93
+
+Ovo nije univerzalno rješenje jer ovisi o dostupnosti servera kojemu šaljemo zahtjev.
+
+Ako hoćemo provjeriti IP adresu www.sum.ba koristimo naredbu nslookup
+
+bash
+
+$nslookup www.sum.ba
+Non-authoritative answer:
+Name:	www.sum.ba
+Address: 212.39.111.33
+
+IP adresa za www.sum.ba je 212.39.111.33.
+
+
+- Kada je HTML datoteka koju dohvaćate zadnji put modificirana na poslužitelju?
+
+Ako pristupimo resursu: http://info.cern.ch/hypertext/WWW/TheProject.html,
+vidimo zaglavlje odgovora:
+
+last-modified: Thu, 03 Dec 1992 08:37:20 GMT.
+
+
+- Koliko se bajtova sadržaja vraća u vaš preglednik?
+
+Ta se informacija nalazi u polju zaglavlja odgovora content-length.
+content-length:2217.
+
+
+- Koji softver/web poslužitelj  poslužje web stranicu na server,navedite odakle vidite?
+
+Ta se informacija nalazi u polju zaglavlja odgovora server. Navedenu informaciju možemo pronaći u Chrome Devtools.
+server:Apache.
+
+-Koje jezike vaš web preglednik može prihvatiti?
+
+Već sam odgovorio na ovo pitanje u gornjem odgovoru, gdje sam naveo jezike koje moj preglednik može prihvatiti. To su: američki engleski (en-US), engleski (en).
+
+
+
+2.2. Pristup različitim resursima
+
+Pristupite sljedećim resursima te za svaki resurs napišite HTTP odgovor koji dobijete (bez tijela), te za svaki resurs odgovorite:
+
+    a) kojem MIME formatu resursa se radi:
+    b) kolika je veličina resursa (u byte-ima)
+    c) koja je verzija HTTP poslužitelja
+
+
+Resursi su:
+    1) http://web-admin.sum.ba/api/storage/pravilnik_mobilnost_1552858671_80.pdf
+    2) https://eucenje.sum.ba/moodle/pluginfile.php/1/core_admin/logocompact/300x300/1698654623/Logo%20sumarum.png
+    3) https://mirrors.edge.kernel.org/linuxmint/stable/10/sha256sum.txt
+
+	
+    Rješenja:
+    
+   1) 
+
+	HTTP/1.1 200 OK
+	Date: Mon, 28 Apr 2025 11:22:25 GMT
+	Server: Apache/2.4.29 (Ubuntu)
+	Cache-Control: no-cache, private
+	Keep-Alive: timeout=5, max=100
+	Connection: Keep-Alive
+	Transfer-Encoding: chunked
+	Content-Type: application/pdf
+	
+	a) application/pdf
+	b) Zaglavlje Transfer-Encoding: chunked nam govori da je resurs poslan u dijelovima, stoga na  osnovu HTTP odgovora ne možemo ustanoviti veličinu resursa.
+	c) Vezija HTTP poslužitelja je HTTP/1.1
+	
+
+    2)
+    
+    	HTTP/1.1 200 OK
+	Server: nginx/1.14.0 (Ubuntu)
+	Date: Mon, 28 Apr 2025 11:44:14 GMT
+	Content-Type: image/png
+	Content-Length: 15684
+	Connection: keep-alive
+	Cache-Control: no-store, no-cache, must-revalidate
+	Content-Disposition: inline; filename="Logo sumarum.png"
+	Last-Modified: Mon, 28 Apr 2025 11:44:14 GMT
+	Expires: Mon, 28 Apr 2025 11:44:16 GMT
+	Pragma: 
+	Accept-Ranges: none
+	
+	
+	a) image/png
+	b) Content-Length:15684
+	c) Verzija HTTP poslužitelja je HTTP/1.1
+	
+	
+     3)
+     
+        HTTP/2 404 
+	server: nginx
+	date: Mon, 28 Apr 2025 11:55:40 GMT
+	content-type: text/html; charset=utf-8
+	content-length: 1946
+	vary: Accept-Encoding
+	
+	
+	a) text/html
+	b) content-length: 1946 
+	c) Vezija HTTP poslužitelja je HTTP/2
