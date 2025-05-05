@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8" />
+  <title>JS Polja</title>
+</head>
+<body>
+  <script type="text/javascript">
+    var polje = new Array(1, 2, 3, 4, 7, 8, 5, 6, 9, 55, 74, 11, 33);
+
+    document.write("Inicijalna dužina polja: " + polje.length + "<br/>");
+
+    var poljeSortiranoSil = polje.slice().sort(function(a, b) {
+      return b - a;
+    });
+    document.write("Polje sortirano od najvećeg ka najmanjem: " + poljeSortiranoSil + "<br/>");
+
+    var poljeSortiranoUzl = polje.slice().sort(function(a, b) {
+      return a - b;
+    });
+    document.write("Polje sortirano od najmanjeg ka najvećem: " + poljeSortiranoUzl + "<br/>");
+
+    poljeSortiranoUzl.pop();
+    document.write("Polje nakon uklanjanja zadnjeg člana: " + poljeSortiranoUzl + "<br/>");
+
+    poljeSortiranoUzl.push(19, 22);
+    document.write("Polje nakon dodavanja 19 i 22: " + poljeSortiranoUzl + "<br/>");
+
+    var polje2 = ["Banana", "Orange", "Apple", "Mango"];
+
+    var polje_final = poljeSortiranoUzl.concat(polje2);
+    document.write("Polje_final nakon spajanja: " + polje_final + "<br/>");
+
+    console.log(polje_final);
+  </script>
+</body>
+</html>
