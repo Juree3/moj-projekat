@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>vjezbe0402-dz-z04</title>
+</head>
+<body>
+  <form onsubmit="Ocjena(); return false;">
+	<a>Unesi ocjenu</a>
+        <input type="text" id="ocjena">
+	<input type="submit" value="Potvrdi">
+  </form>
+  <p id="rezultat"></p>
+  <script>
+	function Ocjena(){
+	  var ocjena = document.getElementById("ocjena").value;
+	  var tekst="";
+		
+	  if(ocjena == "1"){
+	     tekst = "nedovoljan";
+	  }else if(ocjena == "2"){
+	     tekst = "dovoljan";
+	  }else if(ocjena == "3"){
+	     tekst = "dobar";
+	  }else if(ocjena == "4"){
+	     tekst = "vrlo dobar";
+	  }else{
+	      tekst = "odlican";
+	  }
+	document.getElementById("rezultat").textContent = tekst;
+ 	}
+  </script>
+</body>
+</html>

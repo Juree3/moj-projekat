@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+  <meta charset="UTF-8">
+  <title>vjezbe0402-dz-z09</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      margin-top: 50px;
+    }
+    img {
+      width: 150px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<img id="bulb" src="zarulja_off_2.png" alt="žarulja ugašena"><br><br>
+
+<img id="switch" src="off-removebg-preview.png" alt="prekidač OFF" onclick="toggleBulb()">
+
+<script>
+let isOn = false;
+
+function toggleBulb() {
+  const bulb = document.getElementById("bulb");
+  const sw = document.getElementById("switch");
+
+  if (isOn) {
+    bulb.src = "zarulja_off_2.png";
+    sw.src = "off-removebg-preview.png";
+    isOn = false;
+  } else {
+    bulb.src = "zarulja_on_2.png";
+    sw.src = "on-removebg-preview.png";
+    isOn = true;
+  }
+}
+</script>
+
+</body>
+</html>
