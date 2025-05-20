@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vjezbe0402-dz-z05</title>
+</head>
+<body>
+
+<h2>Provjera registarske oznake (BiH)</h2>
+
+<form>
+    <a for="oznaka">Unesi registarsku oznaku:</a><br>
+    <input type="text" id="oznaka" name="oznaka" ><br>
+    <button type="button" onclick="validiraj()">Validiraj</button>
+</form>
+
+<script>
+    function validiraj() {
+        var unos = document.getElementById("oznaka").value;
+        var rezultat = provjeriOznaku(unos);
+
+        if (rezultat) {
+            alert("Format registarske oznake je ISPRAVAN.");
+        } else {
+            alert("Format registarske oznake NIJE ispravan.");
+        }
+    }
+
+    function provjeriOznaku(oznaka) {
+        // BiH format: 2 slova + razmak + 3 broja + razmak + 2 slova
+        var regex = /^[A-ZČĆŽŠĐ]{2} [0-9]{3} [A-ZČĆŽŠĐ]{2}$/;
+        return regex.test(oznaka.toUpperCase());
+    }
+</script>
+
+</body>
+</html>

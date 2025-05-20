@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>vjezbe0402-dz-z03</title>
+</head>
+<body>
+
+    <form onsubmit="Ocjena(); return false;">
+	<p>Unesi ocjenu(1-5);</p>
+	<input type ="text" id="ocjena">
+	<input type ="submit" value="Potvrdi">
+    </form>
+    <script>
+        function Ocjena() {
+           var unos = document.getElementById("ocjena").value;
+	   var poruka = "";
+	   
+	   if(unos == "1"){
+		poruka = "Nedovoljan";
+	   }else if(unos == "2"){
+  		poruka = "Dovoljan";
+	   }else if(unos == "3"){
+	   	poruka = "Dobar";
+	   }else if(unos == "4"){
+		poruka = "Vrlo dobar";
+	   }else{
+		poruka = "Odličan";
+	   }
+
+	alert(poruka);
+     }
+    </script>
+
+</body>
+</html>

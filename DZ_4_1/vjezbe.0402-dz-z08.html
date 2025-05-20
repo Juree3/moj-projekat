@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Online Kalkulator</title>
+</head>
+<body>
+
+<h2>Online Kalkulator</h2>
+
+<input type="text" id="operand1" placeholder="operand1"><br><br>
+<input type="text" id="operand2" placeholder="operand2"><br><br>
+
+<!-- Operacije -->
+<button onclick="izracun('+')">+</button>
+<button onclick="izracun('-')">-</button>
+<button onclick="izracun('*')">*</button>
+<button onclick="izracun('/')">/</button><br><br>
+
+<!-- Trig funkcije -->
+<button onclick="trig('sin')">sin</button>
+<button onclick="trig('cos')">cos</button>
+<button onclick="trig('tan')">tan</button><br><br>
+
+<!-- Log i potenciranje -->
+<button onclick="log('ln')">ln</button>
+<button onclick="log('log10')">log</button><br><br>
+
+<!-- Potencije -->
+<button onclick="potencija(2)">x²</button>
+<button onclick="potencija(3)">x³</button>
+<button onclick="potenciraj()">xʸ</button>
+
+<script>
+function getOperands() {
+  const op1 = parseFloat(document.getElementById("operand1").value);
+  const op2 = parseFloat(document.getElementById("operand2").value);
+  return [op1, op2];
+}
+
+function izracun(operator) {
+  const [op1, op2] = getOperands();
+  let rezultat = 0;
+
+  switch(operator) {
+    case '+': rezultat = op1 + op2; break;
+    case '-': rezultat = op1 - op2; break;
+    case '*': rezultat = op1 * op2; break;
+    case '/': rezultat = op1 / op2; break;
+  }
+
+  alert("Rezultat: " + rezultat);
+}
+
+function trig(funkcija) {
+  const op1 = parseFloat(document.getElementById("operand1").value);
+  let rezultat = 0;
+
+  switch(funkcija) {
+    case 'sin': rezultat = Math.sin(op1); break;
+    case 'cos': rezultat = Math.cos(op1); break;
+    case 'tan': rezultat = Math.tan(op1); break;
+  }
+
+  alert("Rezultat: " + rezultat);
+}
+
+function log(vrsta) {
+  const op1 = parseFloat(document.getElementById("operand1").value);
+  let rezultat = 0;
+
+  if (vrsta === 'ln') {
+    rezultat = Math.log(op1); // prirodni log
+  } else if (vrsta === 'log10') {
+    rezultat = Math.log10(op1); // log baza 10
+  }
+
+  alert("Rezultat: " + rezultat);
+}
+
+function potencija(exp) {
+  const op1 = parseFloat(document.getElementById("operand1").value);
+  const rezultat = Math.pow(op1, exp);
+  alert("Rezultat: " + rezultat);
+}
+
+function potenciraj() {
+  const [op1, op2] = getOperands();
+  const rezultat = Math.pow(op1, op2);
+  alert("Rezultat: " + rezultat);
+}
+</script>
+
+</body>
+</html>

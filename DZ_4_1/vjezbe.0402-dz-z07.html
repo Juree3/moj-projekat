@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+    <title>vjezbe0402-dz-z07</title>
+</head>
+<body>
+
+
+<form onsubmit="izracunaj(); return false;">
+    Unesite dan (01-31): <br>
+    <input type="text" id="dan"><br><br>
+
+    Unesite mjesec (01-12): <br>
+    <input type="text" id="mjesec"><br><br>
+
+    Unesite godinu (npr. 1970): <br>
+    <input type="text" id="godina"><br><br>
+
+    <button type="submit">Izracunaj</button>
+</form>
+
+<script>
+    function izracunaj() {
+        var dan = document.getElementById("dan").value;
+        var mjesec = document.getElementById("mjesec").value;
+        var godina = document.getElementById("godina").value;
+
+        var datumRodjenja = new Date(godina, mjesec - 1, dan);
+        var danas = new Date();
+
+        var godine = danas.getFullYear() - datumRodjenja.getFullYear();
+
+        if (danas.getMonth() < datumRodjenja.getMonth() ||
+            (danas.getMonth() === datumRodjenja.getMonth() && danas.getDate() < datumRodjenja.getDate())
+            )
+       {
+            godine--;
+        }
+
+        alert("Imaš " + godine + " godina.");
+    }
+</script>
+
+</body>
+</html>
